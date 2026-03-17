@@ -95,3 +95,41 @@ Warning: Failed finding Lua header lua.h (searched at /some/bad/path). You may n
 
 LuaRocks may not work correctly when building C modules using this configuration.
 --------------------------------------------------------------------------------
+
+
+
+================================================================================
+TEST: reports when getting a falsy boolean variable
+
+RUN: luarocks config local_by_default
+
+STDOUT:
+--------------------------------------------------------------------------------
+false
+--------------------------------------------------------------------------------
+
+
+
+================================================================================
+TEST: reports when setting a falsy boolean variable
+
+RUN: luarocks config local_by_default true
+
+STDOUT:
+--------------------------------------------------------------------------------
+Wrote
+local_by_default = true
+--------------------------------------------------------------------------------
+
+
+
+================================================================================
+TEST: reports when getting an unknown variable
+
+RUN: luarocks config foo
+EXIT: 1
+
+STDERR:
+--------------------------------------------------------------------------------
+Error: Unknown entry foo
+--------------------------------------------------------------------------------

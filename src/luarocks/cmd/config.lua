@@ -130,7 +130,7 @@ end
 
 local function print_entry(var, tbl, is_json)
    return traverse_varstring(var, tbl, function(t, k)
-      if not t[k] then
+      if t[k] == nil then
          return nil, "Unknown entry " .. k
       end
       local val = t[k]
@@ -151,7 +151,7 @@ end
 local function infer_type(var)
    local typ
    traverse_varstring(var, cfg, function(t, k)
-      if t[k] then
+      if t[k] ~= nil then
          typ = type(t[k])
       end
    end)
